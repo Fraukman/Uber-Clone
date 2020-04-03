@@ -76,7 +76,7 @@ struct Services {
         let values = ["driverUid": uid, "state": TripState.accepted.rawValue] as [String : Any]
         
         
-        REF_TRIPS.child(trip.passangerUid).updateChildValues(values, withCompletionBlock: completion)
+        REF_TRIPS.child(trip.passengerUid).updateChildValues(values, withCompletionBlock: completion)
     }
     
     func observeCurrentTrip(completion: @escaping (Trip) -> Void){

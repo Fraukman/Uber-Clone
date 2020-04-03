@@ -11,12 +11,12 @@ import CoreLocation
 struct Trip {
     var pickcupCoordinates: CLLocationCoordinate2D!
     var destinationCoordinates: CLLocationCoordinate2D!
-    let passangerUid: String!
+    let passengerUid: String!
     var driverUid: String?
     var state: TripState!
     
     init(passangerUid: String, dictionary: [String: Any]) {
-        self.passangerUid = passangerUid
+        self.passengerUid = passangerUid
         
         if let pickcupCoordinates = dictionary["pickupCoordinates"] as? NSArray{
             guard let lat = pickcupCoordinates[0] as? CLLocationDegrees else {return}

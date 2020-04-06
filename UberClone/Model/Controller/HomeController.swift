@@ -393,6 +393,13 @@ private extension HomeController{
 
 extension HomeController: MKMapViewDelegate{
     
+    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
+        guard let user = user else {return}
+        guard user.accountType == .driver else {return}
+        guard let location = userLocation.location else {return}
+        Services.shared.updateDriverLocation(location: location)
+    }
+    
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if let annotation = annotation as? DriverAnnotation{
             let view = MKAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
@@ -412,6 +419,12 @@ extension HomeController: MKMapViewDelegate{
             return lineRenderer
         }
         return MKOverlayRenderer()
+    }
+    
+    func centerMapOnUserLocation(){
+        guard let coordinate = locationManager?.location?.coordinate else {return}
+        let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: 2000, longitudinalMeters: 2000)
+        mapView.setRegion(region, animated: true)
     }
     
 }
@@ -528,6 +541,22 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource{
 //MARK: - RideActionViewDelegate
 
 extension HomeController: RideActionViewdDelegate{
+    func cancelTrip() {
+        Services.shared.cancelTrip { (error, ref) in
+            if let error = error {
+                print("DEBUG: Error deleting trip \(error.localizedDescription)")
+                return
+            }
+            
+            self.centerMapOnUserLocation()
+            self.AnimateRideActionView(shouldShow: false)
+            self.removeAnnotationAndOverlays()
+            
+            self.actionButton.setImage(#imageLiteral(resourceName: "baseline_menu_black_36dp").withRenderingMode(.alwaysOriginal), for: .normal)
+            self.actionButtonConfig = .showMenu
+        }
+    }
+    
     func uploadTrip(_ view: RideActionView) {
         guard let pickupCoordinates = locationManager?.location?.coordinate else {return}
         guard let destinationCoordinates = view.destination?.coordinate else {return}
@@ -566,6 +595,12 @@ extension HomeController: PickupControllerDelegate{
         
         mapView.zoomToFit(annotations: mapView.annotations)
         
+        Services.shared.observeTripCancelled(trip: trip) {
+            self.removeAnnotationAndOverlays()
+            self.AnimateRideActionView(shouldShow: false)
+            self.centerMapOnUserLocation()
+            self.presentAlertController(withTitle: "Oops!",withMessage: "The passenger has cancelled this trip")
+        }
         
         self.dismiss(animated: true) {
             Services.shared.fetchUserData(uid: trip.passengerUid) { (passenger) in

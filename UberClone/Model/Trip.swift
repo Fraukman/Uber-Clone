@@ -8,6 +8,16 @@
 
 import CoreLocation
 
+enum TripState: Int{
+    case requested
+    case accepted
+    case driverArrived
+    case inProgress
+    case arrivedAtDestination
+    case completed
+}
+
+
 struct Trip {
     var pickcupCoordinates: CLLocationCoordinate2D!
     var destinationCoordinates: CLLocationCoordinate2D!
@@ -38,9 +48,3 @@ struct Trip {
     }
 }
 
-enum TripState: Int{
-    case requested
-    case accepted
-    case inProgress
-    case completed
-}

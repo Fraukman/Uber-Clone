@@ -92,6 +92,5 @@ extension MenuController{
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let option = MenuOptions(rawValue: indexPath.row) else {return}
         delegate?.didSelect(option: option)
-        
     }
 }

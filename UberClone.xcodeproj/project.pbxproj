@@ -17,6 +17,7 @@
 		0D04A350242A818200B236ED /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D04A34F242A818200B236ED /* HomeController.swift */; };
 		0D04A354242A987500B236ED /* LocationInputActivationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D04A353242A987500B236ED /* LocationInputActivationView.swift */; };
 		0D04A356242AB64500B236ED /* LocationInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D04A355242AB64500B236ED /* LocationInputView.swift */; };
+		0D04AA30244265BA00EEF2FB /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D04AA2F244265BA00EEF2FB /* CircularProgressView.swift */; };
 		0D05062B243E6A2200A97F67 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D05062A243E6A2200A97F67 /* MenuController.swift */; };
 		0D05062D243E6A3D00A97F67 /* ContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D05062C243E6A3D00A97F67 /* ContainerController.swift */; };
 		0D05062F243E718D00A97F67 /* MenuHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D05062E243E718D00A97F67 /* MenuHeader.swift */; };
@@ -48,6 +49,7 @@
 		0D04A34F242A818200B236ED /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		0D04A353242A987500B236ED /* LocationInputActivationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationInputActivationView.swift; sourceTree = "<group>"; };
 		0D04A355242AB64500B236ED /* LocationInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationInputView.swift; sourceTree = "<group>"; };
+		0D04AA2F244265BA00EEF2FB /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		0D05062A243E6A2200A97F67 /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
 		0D05062C243E6A3D00A97F67 /* ContainerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerController.swift; sourceTree = "<group>"; };
 		0D05062E243E718D00A97F67 /* MenuHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuHeader.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 				0D96F227242FCBB000883320 /* RideActionView.swift */,
 				0D05062E243E718D00A97F67 /* MenuHeader.swift */,
 				0D30D50D24410A080081B9C2 /* UserInfoHeader.swift */,
+				0D04AA2F244265BA00EEF2FB /* CircularProgressView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -345,6 +348,7 @@
 				0D052C35243279A800CB245F /* PickupController.swift in Sources */,
 				0D75A124242CF41800BB80CF /* DriverAnnotation.swift in Sources */,
 				0D04A356242AB64500B236ED /* LocationInputView.swift in Sources */,
+				0D04AA30244265BA00EEF2FB /* CircularProgressView.swift in Sources */,
 				0D709D5E24293FCB006AEBED /* LoginController.swift in Sources */,
 				0D30D511244116910081B9C2 /* AddLocationController.swift in Sources */,
 				0D03B4E9242A48A1000679C4 /* SingUpController.swift in Sources */,

@@ -49,6 +49,9 @@ class ContainerController: UIViewController{
         if Auth.auth().currentUser?.uid == nil {
             DispatchQueue.main.async {
                 let nav = UINavigationController(rootViewController: LoginController())
+                if #available(iOS 13.0, *){
+                    nav.isModalInPresentation = true
+                }
                 nav.modalPresentationStyle = .fullScreen
                 self.present(nav, animated: true, completion: nil)
                 

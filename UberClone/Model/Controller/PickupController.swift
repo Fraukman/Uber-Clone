@@ -86,7 +86,11 @@ class PickupController: UIViewController {
     //MARK: - Selectors
     
     @objc func handleDismiss(){
-        dismiss(animated: true, completion: nil)
+        DriverService.shared.updateTripState(trip: self.trip, state: .denied) { (err, ref) in
+            self.dismiss(animated: true, completion: nil)
+
+        }
+        
     }
     
     @objc func handleAcceptTrip(){
@@ -97,10 +101,13 @@ class PickupController: UIViewController {
     @objc func animateProgress(){
         circularProgressView.animatePulsatingLayer()
         circularProgressView.setProgressWithAnimation(duration: 5, value: 0) {
-//            self.dismiss(animated: true, completion: nil)
+            DriverService.shared.updateTripState(trip: self.trip, state: .denied) { (err, ref) in
+                self.dismiss(animated: true, completion: nil)
+                
+            }
         }
         
-    
+        
     }
     
     //MARK: - API

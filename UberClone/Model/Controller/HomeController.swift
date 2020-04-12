@@ -157,6 +157,15 @@ class HomeController: UIViewController {
                     self.presentAlertController(withTitle: "trip Completed", withMessage: "We hope you enjoyed your trip")
                 }
                 
+            case .denied:
+                self.shouldPresentLoadingView(false)
+                self.presentAlertController(withTitle: "Oops", withMessage: "It looks like we couldn't find you a driver. Please try again...")
+                self.removeAnnotationAndOverlays()
+                PassengerServices.shared.deleteTrip { (err, ref) in
+                    self.centerMapOnUserLocation()
+                    self.configureActionButton(config: .showMenu)
+                    self.inputActivationView.alpha = 1
+                }
             }
             
         }

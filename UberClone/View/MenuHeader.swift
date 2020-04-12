@@ -12,19 +12,26 @@ class MenuHeader: UIView {
     
     //MARK: - Properties
     
-//    var user: User? {
-//        didSet{
-//            fullNameLabel.text = user?.fullname
-//            emailLabel.text = user?.email
-//        }
-//    }
     
     private let user: User
     
-    private let profileImageView: UIImageView = {
-       let iv = UIImageView()
-        iv.backgroundColor = .lightGray
-        return iv
+    private lazy var profileImageView: UIView = {
+       let view = UIView()
+        view.backgroundColor = .black
+        
+        view.addSubview(initalLabel)
+        initalLabel.centerX(inView: view)
+        initalLabel.centerY(inView: view)
+        
+        return view
+    }()
+    
+    private lazy var initalLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 42)
+        label.textColor = .white
+        label.text = user.firstInitial
+        return label
     }()
     
     private lazy var fullNameLabel: UILabel = {

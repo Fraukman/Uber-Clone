@@ -130,12 +130,12 @@ class HomeController: UIViewController {
             guard let state = trip.state else {return}
             guard let driverUid = trip.driverUid else {return}
             switch state{
-                
             case .requested:
                 break
             case .accepted:
                 self.shouldPresentLoadingView(false)
                 self.removeAnnotationAndOverlays()
+                
                 self.zoomForActiveTrip(withDriverUid: driverUid)
                 
                 Services.shared.fetchUserData(uid: driverUid) { driver in
@@ -143,19 +143,25 @@ class HomeController: UIViewController {
                 }
                 
             case .driverArrived:
+                self.removeAnnotationAndOverlays()
                 self.riderActionView.config = .driverArrived
             case .inProgress:
                 self.riderActionView.config = .tripInProgress
             case .arrivedAtDestination:
+                self.removeAnnotationAndOverlays()
+
                 self.riderActionView.config = .endTrip
             case .completed:
+                self.removeAnnotationAndOverlays()
                 PassengerServices.shared.deleteTrip { (err, ref) in
                     self.AnimateRideActionView(shouldShow: false)
                     self.centerMapOnUserLocation()
                     self.configureActionButton(config: .showMenu)
                     self.inputActivationView.alpha = 1
                     self.presentAlertController(withTitle: "trip Completed", withMessage: "We hope you enjoyed your trip")
+                    
                 }
+                
                 
             case .denied:
                 self.shouldPresentLoadingView(false)
@@ -220,6 +226,8 @@ class HomeController: UIViewController {
     func observeTrips(){
         DriverService.shared.observeTrips { (trip) in
             self.trip = trip
+            
+            
         }
     }
     
